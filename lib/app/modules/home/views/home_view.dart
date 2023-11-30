@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -122,22 +124,25 @@ class HomeView extends GetView<HomeController> {
               ),
               false.obs,
             ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 20),
-                child: Align(
-                  alignment: Alignment.bottomCenter,
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                    title: Text(
-                      'Keluar Aplikasi',
-                      style: GoogleFonts.roboto(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w500,
+            Visibility(
+              visible: kIsWeb != true,
+              child: Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Align(
+                    alignment: Alignment.bottomCenter,
+                    child: ListTile(
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                      title: Text(
+                        'Keluar Aplikasi',
+                        style: GoogleFonts.roboto(
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
+                      leading: const Icon(Icons.exit_to_app),
+                      onTap: () => SystemNavigator.pop(),
                     ),
-                    leading: const Icon(Icons.exit_to_app),
-                    onTap: () => SystemNavigator.pop(),
                   ),
                 ),
               ),
@@ -519,7 +524,12 @@ class PengurusSection extends StatelessWidget {
         const SizedBox(height: 20),
         Stack(
           children: [
-            Image.asset('assets/images/pengurus_cover_image.png'),
+            Image.asset(
+              'assets/images/pengurus_cover_image.png',
+              fit: BoxFit.cover,
+              width: MediaQuery.of(context).size.width,
+              height: 150,
+            ),
             const Padding(
               padding: EdgeInsets.fromLTRB(10, 50, 4, 0),
               child: Row(
