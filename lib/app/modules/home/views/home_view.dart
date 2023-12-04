@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart' show kIsWeb;
-
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,7 +9,6 @@ import 'package:hika_biofarma/app/modules/berita_hika/views/berita_hika_view.dar
 import 'package:hika_biofarma/app/modules/info_sosial/views/info_sosial_view.dart';
 import 'package:hika_biofarma/app/modules/register/views/register_view.dart';
 import 'package:hika_biofarma/app/routes/app_pages.dart';
-import 'package:hika_biofarma/utils/theme.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
 import 'package:hika_biofarma/widget/header_widget.dart';
 import 'package:hika_biofarma/widget/pengurus_card_widget.dart';
@@ -102,10 +100,10 @@ class HomeView extends GetView<HomeController> {
                 onChanged: (val) {
                   controller.isLightTheme.value = val;
 
-                  Get.changeTheme(
+                  Get.changeThemeMode(
                     controller.isLightTheme.value
-                        ? ThemeList.darkTheme
-                        : ThemeList.lightTheme,
+                        ? ThemeMode.light
+                        : ThemeMode.dark,
                   );
                   controller.saveThemeStatus();
                 },
@@ -132,7 +130,8 @@ class HomeView extends GetView<HomeController> {
                   child: Align(
                     alignment: Alignment.bottomCenter,
                     child: ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+                      contentPadding:
+                          const EdgeInsets.symmetric(horizontal: 30),
                       title: Text(
                         'Keluar Aplikasi',
                         style: GoogleFonts.roboto(
@@ -391,7 +390,12 @@ class InfoSosialSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(infoSosial.image),
+                      Image.asset(
+                        infoSosial.image,
+                        width: 200,
+                        height: 180,
+                        fit: BoxFit.fitWidth,
+                      ),
                       const SizedBox(height: 8),
                       Text(
                         infoSosial.date,
@@ -468,7 +472,12 @@ class BeritaHikaSection extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.asset(infoSosial.image),
+                      Image.asset(
+                        infoSosial.image,
+                        width: 200,
+                        height: 180,
+                        fit: BoxFit.fitWidth,
+                      ),
                       const SizedBox(height: 8),
                       Text(
                         infoSosial.date,

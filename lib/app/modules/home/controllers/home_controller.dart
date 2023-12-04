@@ -14,7 +14,6 @@ class HomeController extends GetxController {
 
   int current = 0;
   final carouselController = CarouselController();
-  RxBool isChangeDarkMode = false.obs;
 
   List<InfoSosialModel> infoSosialList = [
     InfoSosialModel(
@@ -83,6 +82,7 @@ class HomeController extends GetxController {
       return prefs.getBool('theme') ?? true;
     }).obs;
     isLightTheme.value = (await isLight.value);
+    print(isLightTheme.value);
 
     Get.changeTheme(
       isLightTheme.value ? ThemeList.darkTheme : ThemeList.lightTheme,
