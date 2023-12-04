@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hika_biofarma/app/modules/berita_hika/views/berita_hika_detail_view.dart';
 import 'package:hika_biofarma/app/modules/berita_hika/views/berita_hika_view.dart';
+import 'package:hika_biofarma/app/modules/info_sosial/views/info_sosial_detail_view.dart';
 import 'package:hika_biofarma/app/modules/info_sosial/views/info_sosial_view.dart';
 import 'package:hika_biofarma/app/modules/register/views/register_view.dart';
 import 'package:hika_biofarma/app/routes/app_pages.dart';
 import 'package:hika_biofarma/provider/theme_provider.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
 import 'package:hika_biofarma/widget/header_widget.dart';
-import 'package:hika_biofarma/widget/pengurus_card_widget.dart';
 import 'package:provider/provider.dart';
 
 import '../controllers/home_controller.dart';
@@ -103,9 +104,7 @@ class HomeView extends GetView<HomeController> {
                 Icons.lightbulb_circle,
                 color: appProvider.isDark ? Colors.white : Colors.grey[900],
               ),
-              onTap: () {
-                Get.toNamed(Routes.PENGURUS);
-              },
+              onTap: () {},
             ),
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
@@ -121,12 +120,13 @@ class HomeView extends GetView<HomeController> {
                 Icons.article,
                 color: appProvider.isDark ? Colors.white : Colors.grey[900],
               ),
-              onTap: () {},
+              onTap: () {
+                Get.toNamed(Routes.PENGURUS);
+              },
             ),
             SwitchListTile(
               value: appProvider.isDark,
               onChanged: (val) {
-                print(val);
                 appProvider.setTheme(val ? ThemeMode.dark : ThemeMode.light);
               },
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
@@ -411,6 +411,7 @@ class InfoSosialSection extends StatelessWidget {
           title: 'Info ',
           subtitle: 'Sosial. ',
           onTap: () => Get.to(const InfoSosialView()),
+          isShowDetail: true,
         ),
         const SizedBox(height: 20),
         SingleChildScrollView(
@@ -426,51 +427,56 @@ class InfoSosialSection extends StatelessWidget {
                       right: index == controller.infoSosialList.length - 1
                           ? 0
                           : 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        infoSosial.image,
-                        width: 200,
-                        height: 180,
-                        fit: BoxFit.fitWidth,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        infoSosial.date,
-                        style: GoogleFonts.roboto(
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
-                          color: appProvider.isDark
-                              ? Colors.white
-                              : Colors.grey[900],
+                  child: MaterialButton(
+                    onPressed: () => Get.to(
+                      InfoSosialDetailView(data: infoSosial),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          infoSosial.image,
+                          width: 200,
+                          height: 180,
+                          fit: BoxFit.fitWidth,
                         ),
-                      ),
-                      const SizedBox(height: 5),
-                      SizedBox(
-                        width: 200,
-                        child: Text(
-                          infoSosial.title,
+                        const SizedBox(height: 8),
+                        Text(
+                          infoSosial.date,
                           style: GoogleFonts.roboto(
-                            fontSize: 22,
-                            color: const Color(0XFF55A9B6),
-                          ),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      SizedBox(
-                        width: 200,
-                        child: Text(
-                          infoSosial.description,
-                          style: GoogleFonts.roboto(
-                            fontSize: 12,
-                            color: const Color(0XFF5E5E5E),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
+                            color: appProvider.isDark
+                                ? Colors.white
+                                : Colors.grey[900],
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 5),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            infoSosial.title,
+                            style: GoogleFonts.roboto(
+                              fontSize: 22,
+                              color: const Color(0XFF55A9B6),
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            infoSosial.description,
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: const Color(0XFF5E5E5E),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -498,6 +504,7 @@ class BeritaHikaSection extends StatelessWidget {
           title: 'Berita ',
           subtitle: 'hika. ',
           onTap: () => Get.to(const BeritaHikaView()),
+          isShowDetail: true,
         ),
         const SizedBox(height: 20),
         SingleChildScrollView(
@@ -513,47 +520,52 @@ class BeritaHikaSection extends StatelessWidget {
                       right: index == controller.beritaHikaList.length - 1
                           ? 0
                           : 20),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        infoSosial.image,
-                        width: 200,
-                        height: 180,
-                        fit: BoxFit.fitWidth,
-                      ),
-                      const SizedBox(height: 8),
-                      Text(
-                        infoSosial.date,
-                        style: GoogleFonts.roboto(
-                          color: appProvider.isDark
-                              ? Colors.white
-                              : Colors.grey[900],
-                          fontSize: 11,
-                          fontWeight: FontWeight.w500,
+                  child: MaterialButton(
+                    onPressed: () => Get.to(
+                      BeritaHikaDetailView(data: infoSosial),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(
+                          infoSosial.image,
+                          width: 200,
+                          height: 180,
+                          fit: BoxFit.fitWidth,
                         ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        infoSosial.title,
-                        style: GoogleFonts.roboto(
-                          fontSize: 22,
-                          color: const Color(0XFF55A9B6),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      SizedBox(
-                        width: 200,
-                        child: Text(
-                          infoSosial.description,
+                        const SizedBox(height: 8),
+                        Text(
+                          infoSosial.date,
                           style: GoogleFonts.roboto(
-                            fontSize: 12,
-                            color: const Color(0XFF5E5E5E),
+                            color: appProvider.isDark
+                                ? Colors.white
+                                : Colors.grey[900],
+                            fontSize: 11,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                      ),
-                    ],
+                        const SizedBox(height: 5),
+                        Text(
+                          infoSosial.title,
+                          style: GoogleFonts.roboto(
+                            fontSize: 22,
+                            color: const Color(0XFF55A9B6),
+                          ),
+                        ),
+                        const SizedBox(height: 15),
+                        SizedBox(
+                          width: 200,
+                          child: Text(
+                            infoSosial.description,
+                            style: GoogleFonts.roboto(
+                              fontSize: 12,
+                              color: const Color(0XFF5E5E5E),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },
@@ -571,6 +583,8 @@ class PengurusSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -587,23 +601,26 @@ class PengurusSection extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 150,
             ),
-            const Padding(
-              padding: EdgeInsets.fromLTRB(10, 50, 4, 0),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 50, 4, 0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  PengurusCardWidget(
-                    image: 'assets/images/pengurus_sekretaris_image.png',
-                    title: 'Sekretaris',
+                  Image.asset(
+                    appProvider.isDark
+                        ? 'assets/images/pengurus/sekretaris_black.png'
+                        : 'assets/images/pengurus/sekretaris_white.png',
                   ),
-                  PengurusCardWidget(
-                    image: 'assets/images/pengurus_ketua_umum_image.png',
-                    title: 'Ketua Umum',
+                  Image.asset(
+                    appProvider.isDark
+                        ? 'assets/images/pengurus/ketua_umum_black.png'
+                        : 'assets/images/pengurus/ketua_umum_white.png',
                   ),
-                  PengurusCardWidget(
-                    image: 'assets/images/pengurus_wakil_ketua_image.png',
-                    title: 'Wakil Ketua',
-                  ),
+                  Image.asset(
+                    appProvider.isDark
+                        ? 'assets/images/pengurus/wakil_ketua_black.png'
+                        : 'assets/images/pengurus/wakil_ketua_white.png',
+                  )
                 ],
               ),
             )

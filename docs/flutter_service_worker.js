@@ -3,8 +3,8 @@ const MANIFEST = 'flutter-app-manifest';
 const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 
-const RESOURCES = {"assets/AssetManifest.bin": "784b33fee4c50b40549a70e13aa96eed",
-"assets/AssetManifest.json": "ebcf94bd03b63c5674f31caf1af65291",
+const RESOURCES = {"assets/AssetManifest.bin": "6208b7396883df3229d25e403c130c05",
+"assets/AssetManifest.json": "21f2a5400be25d0cda9c59e2652ddafa",
 "assets/assets/images/berita_hika_1.png": "0b325f27361c57b48f8761a715a83dc2",
 "assets/assets/images/berita_hika_2.png": "49b0f2c8fae266c66246b974bae7d845",
 "assets/assets/images/hika_footer.png": "3511e0b697a8c2ae2a1dbfbd8cbb0ecf",
@@ -13,10 +13,13 @@ const RESOURCES = {"assets/AssetManifest.bin": "784b33fee4c50b40549a70e13aa96eed
 "assets/assets/images/info_sosial_1.png": "367a40f8933a1ea785a0727d46995ce8",
 "assets/assets/images/info_sosial_2.png": "122fa2f2915316bf1f69451bfa10f048",
 "assets/assets/images/kotak_aspirasi_image.png": "e6009d0f2411927c5cd8c74359578f36",
+"assets/assets/images/pengurus/ketua_umum_black.png": "e6df4dd5f764ea4d9bacf7f1d0f473ef",
+"assets/assets/images/pengurus/ketua_umum_white.png": "ddfbda2b65dcebcde79ed86913cc1275",
+"assets/assets/images/pengurus/sekretaris_black.png": "cf9feb1c175b5eeb8f1ad23b47c9e651",
+"assets/assets/images/pengurus/sekretaris_white.png": "7f28fe753005beda2e60e5dd012d8be6",
+"assets/assets/images/pengurus/wakil_ketua_black.png": "c53dd900d78a77af8f45dd104cca7d3f",
+"assets/assets/images/pengurus/wakil_ketua_white.png": "1be03c47320d30265ab99862c307392e",
 "assets/assets/images/pengurus_cover_image.png": "152639725a46879c2b9c069d0d42b9be",
-"assets/assets/images/pengurus_ketua_umum_image.png": "f1d1b88cc86d49b1309a356ef4763176",
-"assets/assets/images/pengurus_sekretaris_image.png": "7805d2b0dd5d51efef4c1f83c2e46c18",
-"assets/assets/images/pengurus_wakil_ketua_image.png": "b5b581577f1ae1706db7d308cb167ecc",
 "assets/assets/images/profil_bagan_organisasi.png": "45a428b7878da1fbeea80b1b517f36d7",
 "assets/FontManifest.json": "dc3d03800ccca4601324923c0b1d6d57",
 "assets/fonts/MaterialIcons-Regular.otf": "7470467f67fcfada68c6b0794cdee048",
@@ -36,9 +39,9 @@ const RESOURCES = {"assets/AssetManifest.bin": "784b33fee4c50b40549a70e13aa96eed
 "icons/Icon-512.png": "96e752610906ba2a93c65f8abe1645f1",
 "icons/Icon-maskable-192.png": "c457ef57daa1d16f64b27b786ec2ea3c",
 "icons/Icon-maskable-512.png": "301a7604d45b3e739efc881eb04896ea",
-"index.html": "609a45d3c1b90d0442d1b08f0fa1523f",
-"/": "609a45d3c1b90d0442d1b08f0fa1523f",
-"main.dart.js": "5331e031582e7081d79c44ff1285f322",
+"index.html": "c8374a011f09d6c881dd96dca5f90a17",
+"/": "c8374a011f09d6c881dd96dca5f90a17",
+"main.dart.js": "24362699beeb39b5325b3b0f3e11d684",
 "manifest.json": "529e72cbd63af7a48be83b5c9e7652a9",
 "version.json": "cb60ad0ac763a9411d4cac006e7eb462"};
 // The application shell files that are downloaded before a service worker can

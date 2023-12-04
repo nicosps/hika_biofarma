@@ -8,12 +8,14 @@ class HeaderWidget extends StatelessWidget {
   final String title;
   final String subtitle;
   final dynamic onTap;
+  final bool isShowDetail;
 
   const HeaderWidget({
     Key? key,
     required this.title,
     required this.subtitle,
     this.onTap,
+    this.isShowDetail = false,
   }) : super(key: key);
 
   @override
@@ -22,41 +24,62 @@ class HeaderWidget extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const SizedBox(
-            width: 56,
-            child: Divider(
-              height: 0,
-              thickness: 1,
-              color: Color(0XFF55A9B6),
-            ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SizedBox(
+                width: 56,
+                child: Divider(
+                  height: 0,
+                  thickness: 1,
+                  color: Color(0XFF55A9B6),
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: title,
+                      style: GoogleFonts.roboto(
+                        color: appProvider.isDark
+                            ? Colors.white
+                            : Colors.grey[900],
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                    ),
+                    TextSpan(
+                      text: subtitle,
+                      style: GoogleFonts.roboto(
+                        color: const Color(0XFF55A9B6),
+                        fontWeight: FontWeight.w700,
+                        fontSize: 16,
+                      ),
+                      recognizer: TapGestureRecognizer()..onTap = onTap,
+                    ),
+                  ],
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-          const SizedBox(height: 10),
-          Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: title,
-                  style: GoogleFonts.roboto(
-                    color: appProvider.isDark ? Colors.white : Colors.grey[900],
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                  ),
+          Visibility(
+            visible: isShowDetail == true,
+            child: MaterialButton(
+              onPressed: onTap,
+              child: Text(
+                'Selengkapnya',
+                style: GoogleFonts.roboto(
+                  color: const Color(0XFF55A9B6),
+                  fontWeight: FontWeight.w700,
+                  fontSize: 16,
                 ),
-                TextSpan(
-                  text: subtitle,
-                  style: GoogleFonts.roboto(
-                    color: const Color(0XFF55A9B6),
-                    fontWeight: FontWeight.w700,
-                    fontSize: 16,
-                  ),
-                  recognizer: TapGestureRecognizer()..onTap = onTap,
-                ),
-              ],
+              ),
             ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),
