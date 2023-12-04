@@ -9,9 +9,11 @@ import 'package:hika_biofarma/app/modules/berita_hika/views/berita_hika_view.dar
 import 'package:hika_biofarma/app/modules/info_sosial/views/info_sosial_view.dart';
 import 'package:hika_biofarma/app/modules/register/views/register_view.dart';
 import 'package:hika_biofarma/app/routes/app_pages.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
 import 'package:hika_biofarma/widget/header_widget.dart';
 import 'package:hika_biofarma/widget/pengurus_card_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../controllers/home_controller.dart';
 
@@ -19,7 +21,10 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
+      backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
       appBar: AppBar(
         elevation: 0,
         title: Image.asset('assets/images/hika_logo.png'),
@@ -94,33 +99,23 @@ class HomeView extends GetView<HomeController> {
               leading: const Icon(Icons.article),
               onTap: () {},
             ),
-            ObxValue(
-              (data) => SwitchListTile(
-                value: controller.isLightTheme.value,
-                onChanged: (val) {
-                  controller.isLightTheme.value = val;
-
-                  Get.changeThemeMode(
-                    controller.isLightTheme.value
-                        ? ThemeMode.light
-                        : ThemeMode.dark,
-                  );
-                  controller.saveThemeStatus();
-                },
-                contentPadding: const EdgeInsets.symmetric(horizontal: 30),
-                title: Text(
-                  'Dark Mode',
-                  style: GoogleFonts.roboto(
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
+            SwitchListTile(
+              value: appProvider.isDark,
+              onChanged: (val) {
+                appProvider.setTheme(val ? ThemeMode.dark : ThemeMode.light);
+              },
+              contentPadding: const EdgeInsets.symmetric(horizontal: 30),
+              title: Text(
+                'Dark Mode',
+                style: GoogleFonts.roboto(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w500,
                 ),
-                thumbColor: MaterialStateProperty.all(
-                  const Color(0XFF55A9B6),
-                ),
-                secondary: const Icon(Icons.dark_mode),
               ),
-              false.obs,
+              thumbColor: MaterialStateProperty.all(
+                const Color(0XFF55A9B6),
+              ),
+              secondary: const Icon(Icons.dark_mode),
             ),
             Visibility(
               visible: kIsWeb != true,
