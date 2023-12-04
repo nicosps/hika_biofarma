@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
 import 'package:hika_biofarma/widget/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../controllers/register_controller.dart';
 
@@ -11,7 +13,10 @@ class RegisterView extends GetView<RegisterController> {
   const RegisterView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
+      backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
       body: SafeArea(
         child: ListView(
           shrinkWrap: true,
@@ -194,12 +199,17 @@ class ConfirmationAndSubmitSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
     return Column(
       children: [
         Text(
           'Dengan ini mengajukan permohonan untuk dapat menjadi anggota Himpunan Karyawan Bio Farma (Hika-BF) dan memberikan kuasa pada HIKA-BF untuk melakukan pemotongan atas pendapatan yang saya terima dari PT Biofarma (Persero) untuk pembayaran iuran wajib organisasi sesuai denga ketentuan yang berlaku.',
           textAlign: TextAlign.center,
-          style: GoogleFonts.roboto(letterSpacing: 0.25, height: 1.5),
+          style: GoogleFonts.roboto(
+            letterSpacing: 0.25,
+            height: 1.5,
+            color: appProvider.isDark ? Colors.white : Colors.grey[900],
+          ),
         ),
         const SizedBox(height: 39),
         GestureDetector(

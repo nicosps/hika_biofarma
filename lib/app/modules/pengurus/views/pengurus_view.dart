@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../controllers/pengurus_controller.dart';
 
@@ -10,7 +12,10 @@ class PengurusView extends GetView<PengurusController> {
   const PengurusView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
+      backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
       body: SafeArea(
         child: ListView(
           shrinkWrap: true,
@@ -79,6 +84,8 @@ class PengurusWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
@@ -106,7 +113,12 @@ class PengurusWidget extends StatelessWidget {
                     const SizedBox(height: 8),
                     Text(
                       namaPengurus,
-                      style: GoogleFonts.roboto(fontSize: 12),
+                      style: GoogleFonts.roboto(
+                        fontSize: 12,
+                        color: appProvider.isDark
+                            ? Colors.white
+                            : Colors.grey[900],
+                      ),
                     ),
                   ],
                 ),
@@ -116,7 +128,11 @@ class PengurusWidget extends StatelessWidget {
           const SizedBox(height: 21),
           Text(
             deskripsi,
-            style: GoogleFonts.roboto(fontSize: 12, height: 1.5),
+            style: GoogleFonts.roboto(
+              fontSize: 12,
+              height: 1.5,
+              color: appProvider.isDark ? Colors.white : Colors.grey[900],
+            ),
           ),
         ],
       ),

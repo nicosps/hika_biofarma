@@ -2,16 +2,8 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:get/get.dart';
 import 'package:hika_biofarma/model/berita.dart';
 import 'package:hika_biofarma/model/info_sosial.dart';
-import 'package:hika_biofarma/utils/theme.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
-  @override
-  void onInit() {
-    super.onInit();
-    _getThemeStatus();
-  }
-
   int current = 0;
   final carouselController = CarouselController();
 
@@ -66,26 +58,5 @@ class HomeController extends GetxController {
   void onUpdateCarousel(int index) {
     current = index;
     update();
-  }
-
-  RxBool isLightTheme = false.obs;
-
-  Future<SharedPreferences> prefs = SharedPreferences.getInstance();
-
-  saveThemeStatus() async {
-    SharedPreferences pref = await prefs;
-    pref.setBool('theme', isLightTheme.value);
-  }
-
-  _getThemeStatus() async {
-    var isLight = prefs.then((SharedPreferences prefs) {
-      return prefs.getBool('theme') ?? true;
-    }).obs;
-    isLightTheme.value = (await isLight.value);
-    print(isLightTheme.value);
-
-    Get.changeTheme(
-      isLightTheme.value ? ThemeList.darkTheme : ThemeList.lightTheme,
-    );
   }
 }

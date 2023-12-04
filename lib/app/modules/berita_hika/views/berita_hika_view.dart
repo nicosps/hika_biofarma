@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hika_biofarma/app/modules/berita_hika/views/berita_hika_detail_view.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
+import 'package:provider/provider.dart';
 
 import '../controllers/berita_hika_controller.dart';
 
@@ -11,7 +13,10 @@ class BeritaHikaView extends GetView<BeritaHikaController> {
   const BeritaHikaView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
+      backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
       body: SafeArea(
         child: ListView(
           shrinkWrap: true,

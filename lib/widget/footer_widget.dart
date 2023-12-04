@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class FooterWidget extends StatelessWidget {
@@ -8,7 +7,7 @@ class FooterWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width,
+      width: MediaQuery.of(context).size.width,
       color: const Color(0XFF252525),
       padding: const EdgeInsets.only(left: 20),
       child: Stack(

@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class HeaderWidget extends StatelessWidget {
   final String title;
@@ -16,6 +18,8 @@ class HeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -36,6 +40,7 @@ class HeaderWidget extends StatelessWidget {
                 TextSpan(
                   text: title,
                   style: GoogleFonts.roboto(
+                    color: appProvider.isDark ? Colors.white : Colors.grey[900],
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
                   ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class TextFieldWidget extends StatelessWidget {
   final String title;
@@ -15,6 +17,8 @@ class TextFieldWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -36,7 +40,10 @@ class TextFieldWidget extends StatelessWidget {
             hintText: title,
             isCollapsed: true,
             contentPadding: const EdgeInsets.all(9),
-            hintStyle: GoogleFonts.roboto(fontSize: 12),
+            hintStyle: GoogleFonts.roboto(
+              fontSize: 12,
+              color: appProvider.isDark ? Colors.white : Colors.grey[900],
+            ),
             fillColor: Colors.black.withOpacity(0.20),
             border: OutlineInputBorder(
               gapPadding: 0,

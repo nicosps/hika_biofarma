@@ -26,14 +26,21 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
       appBar: AppBar(
+        backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
         elevation: 0,
         title: Image.asset('assets/images/hika_logo.png'),
         actions: [
-          const Icon(Icons.account_circle),
+          Icon(
+            Icons.account_circle,
+            color: appProvider.isDark ? Colors.white : Colors.grey[900],
+          ),
           const SizedBox(width: 5),
           Builder(builder: (ctx) {
             return IconButton(
-              icon: const Icon(Icons.menu),
+              icon: Icon(
+                Icons.menu,
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
+              ),
               onPressed: () {
                 Scaffold.of(ctx).openEndDrawer();
               },
@@ -43,6 +50,7 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       endDrawer: Drawer(
+        backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
@@ -52,11 +60,15 @@ class HomeView extends GetView<HomeController> {
               title: Text(
                 'Home',
                 style: GoogleFonts.roboto(
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              leading: const Icon(Icons.home_work),
+              leading: Icon(
+                Icons.home_work,
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
+              ),
               onTap: () {},
             ),
             ListTile(
@@ -66,9 +78,13 @@ class HomeView extends GetView<HomeController> {
                 style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 ),
               ),
-              leading: const Icon(Icons.person_2),
+              leading: Icon(
+                Icons.person_2,
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
+              ),
               onTap: () {
                 Get.toNamed(Routes.PROFILE);
               },
@@ -80,9 +96,13 @@ class HomeView extends GetView<HomeController> {
                 style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 ),
               ),
-              leading: const Icon(Icons.lightbulb_circle),
+              leading: Icon(
+                Icons.lightbulb_circle,
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
+              ),
               onTap: () {
                 Get.toNamed(Routes.PENGURUS);
               },
@@ -94,14 +114,19 @@ class HomeView extends GetView<HomeController> {
                 style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 ),
               ),
-              leading: const Icon(Icons.article),
+              leading: Icon(
+                Icons.article,
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
+              ),
               onTap: () {},
             ),
             SwitchListTile(
               value: appProvider.isDark,
               onChanged: (val) {
+                print(val);
                 appProvider.setTheme(val ? ThemeMode.dark : ThemeMode.light);
               },
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
@@ -110,12 +135,16 @@ class HomeView extends GetView<HomeController> {
                 style: GoogleFonts.roboto(
                   fontSize: 15,
                   fontWeight: FontWeight.w500,
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 ),
               ),
               thumbColor: MaterialStateProperty.all(
                 const Color(0XFF55A9B6),
               ),
-              secondary: const Icon(Icons.dark_mode),
+              secondary: Icon(
+                Icons.dark_mode,
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
+              ),
             ),
             Visibility(
               visible: kIsWeb != true,
@@ -132,9 +161,17 @@ class HomeView extends GetView<HomeController> {
                         style: GoogleFonts.roboto(
                           fontSize: 15,
                           fontWeight: FontWeight.w500,
+                          color: appProvider.isDark
+                              ? Colors.white
+                              : Colors.grey[900],
                         ),
                       ),
-                      leading: const Icon(Icons.exit_to_app),
+                      leading: Icon(
+                        Icons.exit_to_app,
+                        color: appProvider.isDark
+                            ? Colors.white
+                            : Colors.grey[900],
+                      ),
                       onTap: () => SystemNavigator.pop(),
                     ),
                   ),
@@ -185,6 +222,8 @@ class WelcomeTextSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Center(
       child: Text.rich(
         TextSpan(
@@ -202,6 +241,7 @@ class WelcomeTextSection extends StatelessWidget {
             TextSpan(
               text: ' HIKA BF sekarang juga. ',
               style: GoogleFonts.roboto(
+                color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 fontWeight: FontWeight.w500,
                 fontSize: 16,
               ),
@@ -320,6 +360,8 @@ class SubHeaderSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Center(
@@ -332,6 +374,7 @@ class SubHeaderSection extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w500,
                   fontSize: 16,
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 ),
               ),
               TextSpan(
@@ -359,6 +402,8 @@ class InfoSosialSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(HomeController());
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -397,6 +442,9 @@ class InfoSosialSection extends StatelessWidget {
                         style: GoogleFonts.roboto(
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
+                          color: appProvider.isDark
+                              ? Colors.white
+                              : Colors.grey[900],
                         ),
                       ),
                       const SizedBox(height: 5),
@@ -440,7 +488,9 @@ class BeritaHikaSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
     final controller = Get.put(HomeController());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -477,6 +527,9 @@ class BeritaHikaSection extends StatelessWidget {
                       Text(
                         infoSosial.date,
                         style: GoogleFonts.roboto(
+                          color: appProvider.isDark
+                              ? Colors.white
+                              : Colors.grey[900],
                           fontSize: 11,
                           fontWeight: FontWeight.w500,
                         ),

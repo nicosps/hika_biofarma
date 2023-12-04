@@ -4,8 +4,10 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hika_biofarma/app/modules/info_sosial/controllers/info_sosial_controller.dart';
 import 'package:hika_biofarma/model/info_sosial.dart';
+import 'package:hika_biofarma/provider/theme_provider.dart';
 import 'package:hika_biofarma/widget/footer_widget.dart';
 import 'package:hika_biofarma/widget/text_field_widget.dart';
+import 'package:provider/provider.dart';
 
 class InfoSosialDetailView extends StatelessWidget {
   final InfoSosialModel data;
@@ -14,7 +16,10 @@ class InfoSosialDetailView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
+      backgroundColor: appProvider.isDark ? Colors.grey[900] : Colors.white,
       body: SafeArea(
         child: ListView(
           shrinkWrap: true,
@@ -57,6 +62,8 @@ class InfoSosialDetailSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 30),
       child: Column(
@@ -74,7 +81,8 @@ class InfoSosialDetailSection extends StatelessWidget {
             style: GoogleFonts.roboto(
               fontSize: 11,
               fontWeight: FontWeight.w500,
-              color: const Color(0XFF5E5E5E),
+              color:
+                  appProvider.isDark ? Colors.white : const Color(0XFF5E5E5E),
             ),
           ),
           const SizedBox(height: 16),
@@ -91,13 +99,18 @@ class InfoSosialDetailSection extends StatelessWidget {
             style: GoogleFonts.roboto(
               fontSize: 11,
               fontWeight: FontWeight.w500,
-              color: const Color(0XFF5E5E5E),
+              color:
+                  appProvider.isDark ? Colors.white : const Color(0XFF5E5E5E),
             ),
           ),
           const SizedBox(height: 4),
           Text(
             data.description,
-            style: GoogleFonts.roboto(fontSize: 12, height: 1.5),
+            style: GoogleFonts.roboto(
+              fontSize: 12,
+              height: 1.5,
+              color: appProvider.isDark ? Colors.white : Colors.grey[900],
+            ),
             textAlign: TextAlign.justify,
           ),
           const SizedBox(height: 10),
@@ -196,6 +209,8 @@ class CommentBoxWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appProvider = Provider.of<ThemeProvider>(context);
+
     return Container(
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
@@ -211,13 +226,17 @@ class CommentBoxWidget extends StatelessWidget {
               fontSize: 11,
               fontWeight: FontWeight.w500,
               height: 0.5,
+              color: appProvider.isDark ? Colors.white : Colors.grey[900],
             ),
             textAlign: TextAlign.justify,
           ),
           const SizedBox(height: 10),
           Text(
             content.toString(),
-            style: GoogleFonts.roboto(fontSize: 12),
+            style: GoogleFonts.roboto(
+              fontSize: 12,
+              color: appProvider.isDark ? Colors.white : Colors.grey[900],
+            ),
             textAlign: TextAlign.justify,
           ),
         ],
@@ -232,6 +251,7 @@ class BeritaLainSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(InfoSosialController());
+    final appProvider = Provider.of<ThemeProvider>(context);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -244,6 +264,7 @@ class BeritaLainSection extends StatelessWidget {
                 style: GoogleFonts.roboto(
                   fontWeight: FontWeight.w400,
                   fontSize: 22,
+                  color: appProvider.isDark ? Colors.white : Colors.grey[900],
                 ),
               ),
               TextSpan(
