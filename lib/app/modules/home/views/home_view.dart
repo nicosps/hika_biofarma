@@ -31,11 +31,6 @@ class HomeView extends GetView<HomeController> {
         elevation: 0,
         title: Image.asset('assets/images/hika_logo.png'),
         actions: [
-          Icon(
-            Icons.account_circle,
-            color: appProvider.isDark ? Colors.white : Colors.grey[900],
-          ),
-          const SizedBox(width: 5),
           Builder(builder: (ctx) {
             return IconButton(
               icon: Icon(
@@ -56,6 +51,12 @@ class HomeView extends GetView<HomeController> {
           mainAxisSize: MainAxisSize.max,
           children: [
             const SizedBox(height: 50),
+            CircleAvatar(
+              backgroundColor:
+                  appProvider.isDark ? Colors.white : Colors.grey[900],
+              maxRadius: 70,
+            ),
+            const SizedBox(height: 20),
             ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 30),
               title: Text(
