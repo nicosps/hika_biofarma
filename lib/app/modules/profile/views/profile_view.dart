@@ -349,10 +349,10 @@ class PengurusHikaSection extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 15),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          padding: const EdgeInsets.only(left: 30),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
           child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
                 appProvider.isDark
